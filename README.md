@@ -81,3 +81,29 @@
 
 *   原始功能与逻辑：[Abdullah ERTURK](https://github.com/abdullah-erturk)
 *   RustDesk：[https://github.com/rustdesk/rustdesk](https://github.com/rustdesk/rustdesk)
+
+
+## 💡 技术原理解析：为什么你手动改 RustDesk.toml 会失败（ID 回退）？
+
+很多用户在网上搜到教程，用记事本打开了 `RustDesk.toml`，把 `enc_id` 改成了 `id`，保存并重启软件，却发现**ID 又变回了原来的**。这通常是因为踩了以下两个坑：
+
+### 坑 1：改错了配置文件路径（系统服务 vs 用户配置）
+RustDesk 在 Windows 下有两套配置路径：
+*   **普通用户路径**：`%AppData%\RustDesk\config\RustDesk.toml` （很多人改的是这个）
+*   **系统服务路径**：`C:\Windows\ServiceProfiles\LocalService\AppData\Roaming\RustDesk\config\RustDesk.toml`
+
+如果你安装 RustDesk 时勾选了“安装为系统服务”，或者软件是以管理员权限运行的，它会**优先读取并写入系统服务路径下的配置**。这时候你改普通用户路径，根本不会生效。
+
+### 坑 2：后台服务没有停止（内存覆盖文件）
+RustDesk 分为“前台界面”和“后台服务”两个进程。
+当你点击软件右上角“X”关闭窗口时，**后台服务（rustdesk.exe 和 rustdesk --service）并没有真正退出**，它依然在内存里运行。
+此时你修改了 `RustDesk.toml`，当你重新打开软件时，后台服务会直接从内存里读出旧的 ID，并**瞬间覆盖掉你刚刚在记事本里修改的内容**。
+
+---
+
+### 🛠️ 本工具是如何完美解决这个问题的？
+
+`RustDesk_ID_Server_Changer_中文版.bat` 脚本在底层执行了以下标准化流程，彻底杜绝了 ID 回退：
+1.  **强制清理进程**：执行前强制 `taskkill` 掉所有前台和后台 RustDesk 进程，确保内存中的旧配置被释放。
+2.  **动态探测路径**：通过读取注册表，精准定位到当前系统真正生效的配置文件（无论是便携版、普通用户还是系统服务路径）。
+3.  **安全替换与校验**：将 `enc_id` 替换为明文的 `id`，保存后自动启动服务，并利用 `rustdesk.exe --get-id` 命令进行二次校验，确保新 ID 真正生效。
