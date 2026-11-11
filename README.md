@@ -82,6 +82,7 @@
 *   原始功能与逻辑：[Abdullah ERTURK](https://github.com/abdullah-erturk)
 *   RustDesk：[https://github.com/rustdesk/rustdesk](https://github.com/rustdesk/rustdesk)
 
+---
 
 ## 💡 技术原理解析：为什么你手动改 RustDesk.toml 会失败（ID 回退）？
 
