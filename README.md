@@ -48,7 +48,7 @@ RustDesk 官方: https://github.com/rustdesk/rustdesk
 
 ## 使用方法
 
-1. 下载 RustDesk_Changer_中文版.bat；
+1. 下载 RustDesk_ID_Server_Changer_中文版.bat；
 2. 右键「以管理员身份运行」（脚本也会自动尝试提权）；
 3. 按菜单编号选择操作；
 4. 完成后重启 / 让脚本自动重启 RustDesk 即生效。
