@@ -57,7 +57,7 @@ RustDesk 官方: https://github.com/rustdesk/rustdesk
 
 ## 文件清单
 
-- RustDesk_Changer_中文版.bat —— 脚本本体（GBK 编码保存，请勿转成 UTF-8，否则中文乱码）
+- RustDesk_ID_Server_Changer_中文版.bat —— 脚本本体（GBK 编码保存，请勿转成 UTF-8，否则中文乱码）
 - README.md —— 本说明（UTF-8）
 
 ---
