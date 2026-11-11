@@ -1,5 +1,7 @@
 # RustDesk ID & 服务器修改工具（中文本地化版）v4
 
+![脚本运行界面截图](脚本界面截图.png)
+
 图形化修改 RustDesk 本地客户端 ID / 中继(Private)服务器 / 访问 Key / 配置字符串 / 永久密码 的批处理脚本，是原作者 Abdullah ERTURK 项目的中文本地化版本。
 
 *   **原始项目**: [abdullah-erturk/RustDesk-ID-Server-Changer](https://github.com/abdullah-erturk/RustDesk-ID-Server-Changer)
