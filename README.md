@@ -69,5 +69,4 @@ RustDesk 官方: https://github.com/rustdesk/rustdesk
 ## 致谢
 
 - 原始功能与逻辑：Abdullah ERTURK（https://github.com/abdullah-erturk/RustDesk-ID-Server-Changer）
-- 
 - RustDesk：https://github.com/rustdesk/rustdesk
